@@ -1,0 +1,147 @@
+<!DOCTYPE html><html><head><title></title><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" /><style type='text/css'>
+body {
+  font-family: 'Helvetica';
+  letter-spacing:-5px;
+  background:#000;
+  background-size:100%;
+  color:#fff;
+  margin:0;
+  padding:0;
+  font-weight:bold;
+}
+
+h1, h2, h3, p {
+  margin:0;
+}
+
+em, a {
+  font-style:normal;
+  color:hsl(300, 100%, 50%);
+}
+
+a {
+  background: #34d0e7;
+  color:#000;
+  text-decoration:none;
+}
+
+div img {
+  width:100%;
+  -webkit-filter: grayscale(100%);
+}
+
+div {
+  cursor:pointer;
+  cursor:hand;
+  position:absolute;
+  top:0px;
+  left:0px;
+  padding:75px;
+  line-height:97%;
+}
+
+div.center {
+  text-align:center;
+}
+
+div.imageText {
+  text-shadow:0px 0px 15px rgba(0,0,0,0.5);
+  -webkit-filter:opacity(0.9);
+}
+</style><script type='text/javascript'>
+window.onload = function() {
+    var s = document.getElementsByTagName('div'), cur = 0, ti;
+    if (!s) return;
+    function go(n) {
+        cur = n;
+        var i = 1e3, e = s[n], t;
+        for (var k = 0; k < s.length; k++) s[k].style.display = 'none';
+        e.style.display = 'inline';
+        e.style.fontSize = i + 'px';
+        if (e.firstChild.nodeName === 'IMG') {
+            document.body.style.backgroundImage = 'url(' + e.firstChild.src + ')';
+            e.firstChild.style.display = 'none';
+            if ('classList' in e) e.classList.add('imageText');
+        } else {
+            document.body.style.backgroundImage = '';
+            document.body.style.backgroundColor = e.style.backgroundColor;
+        }
+        if (ti !== undefined) window.clearInterval(ti);
+        t = parseInt(e.getAttribute('time-to-next') || 0, 10);
+        if (t > 0) ti = window.setTimeout(fwd, (t * 1000));
+        while (
+            e.offsetWidth > window.innerWidth ||
+            e.offsetHeight > window.innerHeight) {
+            e.style.fontSize = (i -= 2) + 'px';
+            if (i < 0) break;
+        }
+        e.style.marginTop = ((window.innerHeight - e.offsetHeight) / 2) + 'px';
+        if (window.location.hash !== n) window.location.hash = n;
+        document.title = e.textContent || e.innerText;
+    }
+    document.onclick = function() { go(++cur % (s.length)); };
+    function fwd() { go(Math.min(s.length - 1, ++cur)); }
+    function rev() { go(Math.max(0, --cur)); }
+    document.onkeydown = function(e) {
+        if (e.which === 39) fwd();
+        if (e.which === 37) rev();
+    };
+    document.ontouchstart = function(e) {
+        var x0 = e.changedTouches[0].pageX;
+        document.ontouchend = function(e) {
+            var x1 = e.changedTouches[0].pageX;
+            if (x1 - x0 < 0) fwd();
+            if (x1 - x0 > 0) rev();
+        };
+    };
+    function parse_hash() {
+        return Math.max(Math.min(
+            s.length - 1,
+            parseInt(window.location.hash.substring(1), 10)), 0);
+    }
+    if (window.location.hash) cur = parse_hash() || cur;
+    window.onhashchange = function() {
+        var c = parse_hash();
+        if (c !== cur) go(c);
+    };
+
+    go(cur);
+};
+</script></head><body>
+
+<div class="center"><img src="../img/animated_map_css_gif.gif">Dorkshop: <br><em>Web Cartography</em></div>
+<div class="center">(and <em>Geospatial data-viz</em>)</div>
+<div class="center"> with <em>CartoDB</em></div>
+<div>by Chris Henrick</div>
+<div><img src="../img/Mount_Marcy_New_York_USGS_topo_map_1979.JPG">Why Maps?</div>
+<div>What's the big friggin' deal?</div>
+<div><img src="../img/google-maps.jpg">Maps + the Web = Really Cool</div>
+<div><img src="../img/census-map-one-dot-per-person.jpg">Maps + the Web + <em>Data</em> = Cray Cray</div>
+<div>examples...</div>
+<div>what's going on here?</div>
+<div>the technology...</div>
+<div>data + tiles + server + API<br><br><img src="../img/tiles.gif"></div>
+<div>Geospatial what?</div>
+<div>Data + location + geometry = geospatial data</div>
+<div><img src="../img/nyc-pub-schools.png">Points</div>
+<div><img src="../img/us-roads-rivers.png">Lines</div>
+<div><img src="../img/nyc-boroughs.png">Polygons</div>
+<div>Weird Formats?</div>
+<div>Mostly Vector.</div>
+<div>You know, like illustrator.</div>
+<div><img src="../img/attribute-table.png">But with a backend <em>(data)</em></div>
+<div><img src="../img/ne10m-roads.png">and front end <em>(visual)</em> in one.</div>
+<div>Why CartoDB?</div>
+<div>It takes care of all the nitty gritty server side stuff for you.</div>
+<div>Lets you easily overlay spatial data onto a map.</div>
+<div>Allows for the <em>rapid prototyping</em> of <em>cartographic visualizations</em>.</div>
+<div>including <em>analyzing</em> data!</div>
+<div>Makes it easy to <em>publish</em> and <em>share</em> your maps!</div>
+<div>Allows for <em>analysis</em> with geospatial data.</div>
+<div><em>Disclaimer:</em> there are other options too...</div>
+<div>Leaflet, MapBox, TileMill, D3JS, etc...</div>
+<div>But I work for <em>CartoDB</em></div>
+<div>So that's what I'm showing you today <em>: )</em></div>
+<div><img src="../img/maptime-nyc.jpg"><em>Map Time</em></div>
+<div>Let's make a <em>map!</em></div>
+</body></html>
