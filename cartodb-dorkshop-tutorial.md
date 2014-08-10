@@ -46,12 +46,13 @@ __Examples of each geometry type:__
   
   ![](./img/nyc-boroughs.png)
 
-These types of data are what is used to render __map tiles__ like those you see on Google Maps, Bing, Map Quest, etc. 
-![]()
+These types of data are what is used to render __map tiles__ like those you see on Google Maps, Bing, Map Quest, etc. For example these are map tiles from different providers for the same area of San Francisco:
+
+![](./img/tiles.gif)
 
 Map tiles are small 256 x 256 pixel images that are "tiled" together in a grid like fashion. They are broken up this way so that only the part of the earth you are viewing needs to be rendered. Only the images inside and just outside the map area you are looking at are being rendered. The server is told to render neighboring tiles and to _cache_ them so that when you pan to a new area the interaction appears seamless. 
 
-We can overlay _custom data_ on our web maps and even _analyze_ geospatial data with CartoDB. This is where the fun	 comes in :)
+Map tiles form our _basemap_ that we can overlay _custom data_ on top of. Even more though, we can _analyze_ our geospatial data with CartoDB. This is where the fun comes in :)
 
 ### Analyzing Geospatial data with PostGIS
 
@@ -61,7 +62,7 @@ PostGIS is the open-source technology that allows for doing geospatial analysis 
 - It builds on SQL - if you already know SQL, this is an easy way to get into doing GIS analysis.
 - You can query data dynamically - if you have a server that can crunch a PostGIS query and return JSON, you can do dynamic spatial queries in your apps. e.g. "Find me all points near me."
 
-If you are interested you can find an introductory tutorial about using PostGIS in CartoDB [here](https://github.com/csvsoundsystem/nicar-cartodb-postgis/blob/gh-pages/README.md#postgis).
+If you are interested you can find another introductory tutorial about using PostGIS in CartoDB [here](https://github.com/csvsoundsystem/nicar-cartodb-postgis/blob/gh-pages/README.md#postgis). We will cover some basic PostGIS in this tutorial though.
 
 
 
@@ -69,10 +70,10 @@ If you are interested you can find an introductory tutorial about using PostGIS 
 
 ### Intro to the CartoDB Dashboard
 
-1. Create a free account and log into CartoDB. In the dashboard, select the `public data` option then `populated places` and add the dataset to your account. Take a look at the  `adm0cap field` in the __table view__ dashboard.
+1. Create a free account and log into CartoDB. In the dashboard, select the `public data` option then `populated places` and add the dataset to your account. Take a look at the  `adm0cap field` in the __table view__ dashboard. This field stores 0's and 1's, with the latter being for country capitals.
 
-2. Walk through the GUI:
-    - There are ways to view your data in CartoDB: 
+2. A walk through the GUI:
+    - There are two ways to view your data in CartoDB: 
     - __Table View__: shows column names & rows, like Excel. Each row represents a point. SQL console.
     - Show what's inside cells in `the_geom` column: lat and lon coordinates.
     - __Map View__: Allows for zooming and panning, changing the base map, using the side bar Wizard to style data. 
