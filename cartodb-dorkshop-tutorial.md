@@ -85,7 +85,7 @@ If you are interested you can find another introductory tutorial about using Pos
     - __Note__: any changes we make to our visualization will be updated in real time!
     - Notice the differnces between the __tables__ and __visualizations__ dashboards. The former is just the  data you have imported to your account, the latter are the maps you create with your data and may share / publish. Visualizations may link to multiple tables in the form of layers.
 
-### Making a Choropleth map
+### Making a Choropleth Map
 
 1. Delete the populated places dataset and visualization we made as we'll need the storage space for the free account. 
 2. Import the U.S. counties data from the URL: `http://acdmy.org/d/counties.zip`
@@ -111,18 +111,18 @@ If you are interested you can find another introductory tutorial about using Pos
     	FROM us_counties
     ```
 
-### Making a Choropleth point map
+### Making a Thematic Point Map
 1. Use this tornado data: `http://acdmy.org/d/tornadoes.zip`
 2. Inspect data & convert columns damage to number and date to date format (because CSV)
 3. Demo Wizard to show types of viz like Bubble Map, intensity, density map
 4. Add labels
 5. Data Filtering, show how this gets translated to SQL.
 
-### Animating Data with Torque
+### Animating Geospatial Data with Torque
 1. Use the tornado data from above: `http://acdmy.org/d/tornadoes.zip`
 2. Demo Torque option in the visualization wizard.	
 
-### Making a multi-layered Viz
+### Making a Multi-Layered Data Cake
 - Combine datasets from last parts
 - demonstrate using PostGIS to count the number of tornadoes per county:
 
