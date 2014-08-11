@@ -74,13 +74,13 @@ If you are interested you can find another introductory tutorial about using Pos
 
 2. A walk through the GUI:
     - There are two ways to view your data in CartoDB: 
-    - __Table View__: shows column names & rows, like Excel. Each row represents a point. SQL console.
-    - Show what's inside cells in `the_geom` column: lat and lon coordinates.
-    - __Map View__: Allows for zooming and panning, changing the base map, using the side bar Wizard to style data. 
-    - In the style wizard try switching data style to _category view_, choose the `adm0cap` column and assign markers to `adm0cap` for country-capital vs. regular populated place
+      - __Table View__: shows column names & rows, like Excel. Each row represents a point.
+        - Show what's inside cells in `the_geom` column: lat and lon coordinates.
+      - __Map View__: Allows for zooming and panning, changing the base map, using the Visualization Wizard in the side bar to style data. 
+    - In the Visualization Wizard try switching the data's style to _category view_, choose the `adm0cap` column and assign markers to `adm0cap` for country-capital vs. regular populated place
     - mention you can load custom images for markers
 
-3. Demonstrate publishing: 
+3. Demonstrate Publishing / Sharing a Map: 
     - By clicking on the `Visualize` button we can create a `Visualization` and share our map with the world via a URL, iframe or viz.json.
     - __Note__: any changes we make to our visualization will be updated in real time!
     - Notice the differnces between the __tables__ and __visualizations__ dashboards. The former is just the  data you have imported to your account, the latter are the maps you create with your data and may share / publish. Visualizations may link to multiple tables in the form of layers.
@@ -123,7 +123,19 @@ If you are interested you can find another introductory tutorial about using Pos
 2. Demo Torque option in the visualization wizard.	
 
 ### Making a multi-layered Viz
-Combine datasets from last parts
+- Combine datasets from last parts
+- demonstrate using PostGIS to count the number of tornadoes per county:
+
+  ```
+  UPDATE us_countries 
+  	SET tornados_by_county = 
+  	(
+  		SELECT count(1) 
+  		FROM tornados 
+  		WHERE st_contains(us_counties.the_geom,tornados.the_geom) 
+  	)
+  ```
+
 
 ## Resources
 ### Learning
