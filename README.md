@@ -9,7 +9,7 @@ I ([Chris Henrick](https://twitter.com/chrislhenrick)) have a professional backg
 
 ## What is this Dorkshop about?
 
-Mapping data interactively on the web using free open-source software called CartoDB. 
+Mapping data interactively on the web using the free open-source software called CartoDB. 
 
 ### Examples / Use Cases:
 
@@ -26,13 +26,13 @@ Mapping data interactively on the web using free open-source software called Car
 
 CartoDB is a platform running on open-source software for visualizing and analzying data on interactive web-maps. It is perhaps the easiest method of mapping geospatial data for the web. It also allows for high cartographic customization through an intuitive user interface as well as advanced geospatial data analysis using [SQL](http://en.wikipedia.org/wiki/Sql) (Structured Queried Language) and [Post-GIS](http://boundlessgeo.com/solutions/solutions-software/postgis/).
 
-Prior to CartoDB (and other opensource web-cartography software such as [Tile Mill](https://www.mapbox.com/tilemill/)), creating webmaps involved having to install server-side software. This was _extremely difficult_ unless you were a computer programmer / back-end web developer. The great thing about CartoDB is that it handles all of the server side stuff for you. For example, each time you import data into your dashboard in CartoDB that data is automatically stored inside a database that has _geospatial_ capabilities.
+Prior to CartoDB (and other opensource web-cartography software such as [Tile Mill](https://www.mapbox.com/tilemill/)), creating webmaps involved having to have your very own web server and install both server-side and database software. This was _extremely difficult_ unless you were a experienced computer programmer / back-end web developer. The great thing about CartoDB is that it handles all of the server side stuff for you. For example, each time you import data into CartoDB that data is automatically stored inside a database that has _geospatial_ capabilities.
 
 ### Geospatial? Wait, what???
 
-__Geospatial data__ refers to data that has a location based, geometric component. Most geospatial data is in _vector format_ and is stored as points, lines and polygons whose vertices have real world x, y coordinates such as latitude and longitude. In [GIS](http://en.wikipedia.org/wiki/Geographic_information_system), geospatial data can be used to represent both physical and cultural features. These data can then be overlayed and analyzed to solve problems and model the enviroment. 
+__Geospatial data__ refers to data that has a location based, geometric component. Most geospatial data is in _vector format_ and is stored as points, lines and polygons whose vertices have real world x, y coordinates such as latitude and longitude. In [GIS](http://en.wikipedia.org/wiki/Geographic_information_system), geospatial data can be used to represent both physical and cultural features. These data can then be cartographically rendered and analyzed to solve problems and model the enviroment. 
 
-__Examples of each geometry type:__
+### Examples of Geometry Types:
 
 - A list of street addresses, which can then be __georeferenced__ (matched) to individual pairs of latitude longitude coordinates (points), such as the locations of all public schools in NYC:
    
@@ -42,21 +42,23 @@ __Examples of each geometry type:__
    
   ![](./img/us-roads-rivers.png)
   
-- New York City's borough boundaries or other administrative boundaries such as states and countries can be stored as polygons:
+- New York City's borough boundaries (or other administrative boundaries such as states, provinces and countries) can be stored as polygons:
   
   ![](./img/nyc-boroughs.png)
 
-These types of data are what is used to render __map tiles__ like those you see on Google Maps, Bing, Map Quest, etc. For example these are map tiles from different providers for the same area of San Francisco:
+### Map Tiles
+
+These types of data are used to render __map tiles__ like those you see on [OpenStreetMap](http://www.openstreetmap.org), Google Maps, Bing, Map Quest, etc. For example these are map tiles from different providers for the same area of San Francisco:
 
 ![](./img/tiles.gif)
 
-Map tiles are small 256 x 256 pixel images that are "tiled" together in a grid like fashion. They are broken up this way so that only the part of the earth you are viewing needs to be rendered. Only the images inside and just outside the map area you are looking at are being rendered. The server is told to render neighboring tiles and to _cache_ them so that when you pan to a new area the interaction appears seamless. 
+Map tiles are small 256 x 256 pixel images that are "tiled" together in a grid like and pyramid fashion. They are broken up this way to make zooming and panning appear seamless and fluid by the web-map user. Only the images inside and just outside the map area the user is looking at are being rendered. The server is told to render neighboring tiles and to _cache_ them so that when you pan to a new area the interaction appears seamless. 
 
-Map tiles form our _basemap_ that we can overlay _custom data_ on top of. Even more though, we can _analyze_ our geospatial data with CartoDB. This is where the fun comes in :)
+For web mapping map tiles form our _basemap_ that we can overlay _custom data_ on top of. Even more though, we can _analyze_ our geospatial data with CartoDB. This is where the fun comes in :)
 
 ### Analyzing Geospatial data with PostGIS
 
-PostGIS is the open-source technology that allows for doing geospatial analysis in CartoDB. Why would we want to use this over other types of GIS software?
+__PostGIS__ (along with PostgreSQL) is the open-source technology that allows for doing geospatial analysis in CartoDB. Why would we want to use this over other types of GIS software?
 
 - Replicable - you can script your workflow, which is great for leaving a trail of your work.
 - It builds on SQL - if you already know SQL, this is an easy way to get into doing GIS analysis.
@@ -70,20 +72,29 @@ If you are interested you can find another introductory tutorial about using Pos
 
 ### Intro to the CartoDB Dashboard
 
-1. Create a free account and log into CartoDB. In the dashboard, select the `public data` option then `populated places` and add the dataset to your account. Take a look at the  `adm0cap field` in the __table view__ dashboard. This field stores 0's and 1's, with the latter being for country capitals.
+1. Create a free account and log into CartoDB. In the dashboard, select the `public data` option then `populated places` to add the dataset to your account. Take a look at the  `adm0cap field` in the __table view__ dashboard. This field stores 0's and 1's, with the latter being for country capitals.
 
 2. A walk through the GUI:
-    - There are two ways to view your data in CartoDB: 
-      - __Table View__: shows column names & rows, like Excel. Each row represents a point.
-        - Show what's inside cells in `the_geom` column: lat and lon coordinates.
-      - __Map View__: Allows for zooming and panning, changing the base map, using the Visualization Wizard in the side bar to style data. 
-    - In the Visualization Wizard try switching the data's style to _category view_, choose the `adm0cap` column and assign markers to `adm0cap` for country-capital vs. regular populated place
-    - mention you can load custom images for markers
+    - When inspecting a data table there are two ways to view your data in CartoDB: 
+      - __Table View__: shows column names & rows, like a spreadsheet. For this dataset each row represents a point. But they may also represent other geometry types depending on your data.
+        - Take a look at what's inside the cells in `the_geom` column, You should see lattitude and longitude coordinates.
+      - __Map View__: Allows for inspecting our data visually, eg: zooming and panning. We can also change the base map, use the Visualization Wizard in the side bar to style data and add interaction such as pop-ups that display values from our table view. 
+      
+    - In the Visualization Wizard try switching the data's style to _category view_, choose the `adm0cap` column and assign different image markers to `adm0cap` for country-capital vs. regular populated place.
+    
+    - You may also upload custom images to be used as markers.
 
 3. Demonstrate Publishing / Sharing a Map: 
-    - By clicking on the `Visualize` button we can create a `Visualization` and share our map with the world via a URL, iframe or viz.json.
-    - __Note__: any changes we make to our visualization will be updated in real time!
-    - Notice the differnces between the __tables__ and __visualizations__ dashboards. The former is just the  data you have imported to your account, the latter are the maps you create with your data and may share / publish. Visualizations may link to multiple tables in the form of layers.
+
+    - By clicking on the `Visualize` button in the upper right corner we can create a `Visualization`. Do this and give your visualization a name such as "My First Viz". 
+    
+    - When we create a visualization it will inherit the styles we set from our map view. 
+    
+    - Visualizations work by linking to your data tables. Note that if we go back to inspecting our imported data table and change the styles from here the visualization we made with that data _will not_ be updated with those styles. However if you make any changes to the values in those tables the corresponding visualization _will_ be affected.
+    
+    - __Note__: any changes we make to our visualization will be updated in real time to anyone viewing our viz!
+    
+    - Notice the differnces between the __tables__ and __visualizations__ dashboards. The former is just the  data you have imported to your account, the latter are the maps you create with your data and may choose to share / publish. A single Visualization may link to multiple tables in the form of layers.
 
 ### Making a Choropleth Map
 
