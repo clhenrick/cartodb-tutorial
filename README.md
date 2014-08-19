@@ -123,10 +123,15 @@ If you are interested you can find another introductory tutorial about using Pos
     ```
 
 ### Making a Thematic Point Map
+
 1. Use this tornado data: `http://acdmy.org/d/tornadoes.zip`
+
 2. Inspect data & convert columns damage to number and date to date format (because CSV)
+
 3. Demo Wizard to show types of viz like Bubble Map, intensity, density map
+
 4. Add labels
+
 5. Data Filtering, show how this gets translated to SQL.
 
 ### Animating Geospatial Data with Torque
@@ -150,7 +155,7 @@ If you are interested you can find another introductory tutorial about using Pos
 
 ## Resources
 ### Learning
-- CartoDB [Map Academy](http://academy.cartodb.com/). What we did today comes from here.
+- CartoDB [Map Academy](http://academy.cartodb.com/). Much of what we covered in this tutorial comes from here.
 - Intro to [using PostGIS with CartoDB](https://github.com/csvsoundsystem/nicar-cartodb-postgis/blob/gh-pages/README.md#postgis) by [Michael Keller](https://github.com/mhkeller)
 
 ### Reference
@@ -163,6 +168,8 @@ If you are interested you can find another introductory tutorial about using Pos
 
 
 ### Code Examples
+More advanced. For using the CartoDB API. Requires a basic knowledge of Javascript for the web.
+
 - Andrew Hill's [blocks](http://bl.ocks.org/andrewxhill)
 - Javi Santana's [blocks](http://bl.ocks.org/javisantana)
 
@@ -173,5 +180,6 @@ If you are interested you can find another introductory tutorial about using Pos
 - CDB team [maps 2](https://team.cartodb.com/)
 
 ### Geospatial data sources1. Natural Earth Data: (3 levels of small-scale, world coverage)http://www.naturalearthdata.com/2. Metro Extracts: (OSM extracts of urban areas convertedto shapele and other formats)http://metro.teczno.com/3. Geofabrik (Continental & Country OSM extracts):http://download.geofabrik.de/4. OpenStreetMapData.com (OSM Land, Water, Coastline data):http://openstreetmap-data.com/data5. Open Data NYC:https://nycopendata.socrata.com/6. US National Weather Service (NOAA):http://www.nws.noaa.gov/geodata/7. U.S. Census:http://www.census.gov/2010census/data/
+__Note / Tip:__ Any data with a spatial attribute, such as street addresses, county names, state / province names, country names, zipcodes, IP addresses, etc. but that doesn't have a geometry can be _georeferenced_ to geospatial data that has a geometry. Typically the preferred format to work with this type of data is CSV (comma separated value) but CartoDB also allows for importing Microsoft Excel tables. Make sure your data's first row are column names and that these names don't contain spaces, numbers or speacil characters.
 
 
