@@ -98,20 +98,33 @@ If you are interested you can find another introductory tutorial about using Pos
 
 ### Making a Choropleth Map
 
-1. Delete the populated places dataset and visualization we made as we'll need the storage space for the free account. 
-2. Import the U.S. counties data from the URL: `http://acdmy.org/d/counties.zip`
-3. Take a look at what the values are inside the cells in `the_geom` column.
-4. Now switch to the __map view__ to see how the polygons overlayed on U.S.
+1. Delete the populated places dataset and visualization we made as we'll need the storage space to move forward with the next part of the tutorial using a free account. 
+
+2. Import the U.S. counties data from the following URL: `http://acdmy.org/d/counties.zip`  
+   __Tip:__ you can just copy and paste this link after clicking the "add data" button from the tables dashboard. No need to download it first!
+
+3. Take a look at what the values are inside the cells in `the_geom` column. You should see something like:  
+   
+   ```
+{"type":"MultiPolygon","coordinates":[[[[-69.99693763,12.5775821],[-69.93639075,12.53172435],[-69.924672,12.51923249],[-69.91576087,12.49701569],[-69.88019772,12.45355866],[-69.87682044,12.42739492],[-69.8880916,12.41766999],[-69.90880286,12.41779206],[-69.93053138,12.42597077],[-69.94513913,12.44037507],[-69.924672,12.44037507],[-69.924672,12.447211],[-69.95856686,12.46320222],[-70.02765866,12.52293529],[-70.04808509,12.53115469],[-70.05809486,12.53717683],[-70.06240801,12.54682038],[-70.0603735,12.55695222],[-70.05109616,12.57404206],[-70.04873613,12.5837263],[-70.05264238,12.60000235],[-70.05964108,12.61424388],[-70.06110592,12.62539297],[-70.04873613,12.63214753],[-70.00715085,12.58551667],[-69.99693763,12.5775821]]]]}
+   ```
+
+4. Now switch to the __map view__ to see how the polygons overlayed on U.S.  
+   In the Visualization Wizard:
     - try changing the base map.
     - try changing the polygon fills and borders.
-5. Demo info windows
-    - turn on /off columns.
-    - change style of info windows.
-    - mention you can customize them with HTML.
+    
+5. Demo info windows, Notice how you may:
+    - turn columns on or off.
+    - edit the name to be displayed in the info window.
+    - change the style of info windows.
+    - customize them with HTML.
+    
 6. Demo Choropleth map with `pop` column
-    - __important:__ mapping population by county gives a false impression, we need to use population density.
-    - Let's normalize the data: divide number of people by area to have a normalized value to compare. 
-    - SQL:
+    - __Problem:__ mapping population by county gives a false impression to the viewer of our map. We need to use population density instead as a value for comparison.
+    - Our data has this value already included but to show how you could compute it on your own we would do the following.
+    - Normalize the data: divide the number of people in a county by its area.
+    - the SQL code to enter into the SQL window:
     
     ```
     SELECT pop_sqkm, 
@@ -124,38 +137,47 @@ If you are interested you can find another introductory tutorial about using Pos
 
 ### Making a Thematic Point Map
 
-1. Use this tornado data: `http://acdmy.org/d/tornadoes.zip`
+1. Use this tornado data: `http://acdmy.org/d/tornadoes.zip` and import it as we did with the county data.
 
-2. Inspect data & convert columns damage to number and date to date format (because CSV)
+2. Inspect data. Because this data is in CSV format it stores all of our data types as strings. In order to use the numeric and date values in this data we need to convert the following columns' data types: 
+    - convert `damage` to  number type
+    - convert `date` to date type
+        
+3. In the map view use the Visualization Wizard to show our data's `damage` value in different methods such as Bubble Map, intensity, density map, etc.
 
-3. Demo Wizard to show types of viz like Bubble Map, intensity, density map
+4. (TO DO) Try adding labels to our map.
 
-4. Add labels
-
-5. Data Filtering, show how this gets translated to SQL.
+5. (TO DO) Data Filtering, show how this gets translated to SQL. 
 
 ### Animating Geospatial Data with Torque
-1. Use the tornado data from above: `http://acdmy.org/d/tornadoes.zip`
-2. Demo Torque option in the visualization wizard.	
+
+1. Use the same tornado data from above.
+
+2. Demo the Torque option in the Visualization Wizard.	
 
 ### Making a Multi-Layered Data Cake
-- Combine datasets from last parts
-- demonstrate using PostGIS to count the number of tornadoes per county:
+
+- Let's combine both datasets from the last parts into a new visualization.
+
+- We can use PostGIS to count the number of tornadoes per county. Create a new column called `tornadoes_by_county` and give it a numeric data type. 
+
+- Then in the SQL window run the following query ( this assumes your tornado data table is named `tornadoes`)
 
   ```
   UPDATE us_countries 
-  	SET tornados_by_county = 
+  	SET tornadoes_by_county = 
   	(
   		SELECT count(1) 
-  		FROM tornados 
+  		FROM tornadoes 
   		WHERE st_contains(us_counties.the_geom,tornados.the_geom) 
   	)
   ```
-
+- That's it folks!
 
 ## Resources
 ### Learning
 - CartoDB [Map Academy](http://academy.cartodb.com/). Much of what we covered in this tutorial comes from here.
+- CartoDB [tutorials page](http://docs.cartodb.com/tutorials.html). Covers many more topics relating to GIS and web-mapping individually.
 - Intro to [using PostGIS with CartoDB](https://github.com/csvsoundsystem/nicar-cartodb-postgis/blob/gh-pages/README.md#postgis) by [Michael Keller](https://github.com/mhkeller)
 
 ### Reference
@@ -176,10 +198,10 @@ More advanced. For using the CartoDB API. Requires a basic knowledge of Javascri
 ### More CBD Map Examples
 - CartoDB [Map Gallery](http://cartodb.com/gallery)
 - Andrew Hill's [maps](https://andrew.cartodb.com/page/1)
-- CDB team [maps 1](https://osm2.cartodb.com/page/1)
-- CDB team [maps 2](https://team.cartodb.com/)
+- CartoDB team [maps 1](https://osm2.cartodb.com/page/1)
+- CartoDB team [maps 2](https://team.cartodb.com/)
 
-### Geospatial data sources1. Natural Earth Data: (3 levels of small-scale, world coverage)http://www.naturalearthdata.com/2. Metro Extracts: (OSM extracts of urban areas convertedto shapele and other formats)http://metro.teczno.com/3. Geofabrik (Continental & Country OSM extracts):http://download.geofabrik.de/4. OpenStreetMapData.com (OSM Land, Water, Coastline data):http://openstreetmap-data.com/data5. Open Data NYC:https://nycopendata.socrata.com/6. US National Weather Service (NOAA):http://www.nws.noaa.gov/geodata/7. U.S. Census:http://www.census.gov/2010census/data/
-__Note / Tip:__ Any data with a spatial attribute, such as street addresses, county names, state / province names, country names, zipcodes, IP addresses, etc. but that doesn't have a geometry can be _georeferenced_ to geospatial data that has a geometry. Typically the preferred format to work with this type of data is CSV (comma separated value) but CartoDB also allows for importing Microsoft Excel tables. Make sure your data's first row are column names and that these names don't contain spaces, numbers or speacil characters.
+### Geospatial data sources1. [Natural Earth Data](http://www.naturalearthdata.com/): 3 levels of small-scale, world coverage2. [Metro Extracts](http://metro.teczno.com/): OSM extracts of urban areas converted to shapele and other formats3. [Geofabrik](http://download.geofabrik.de/): Continental & Country OSM extracts.4. [OpenStreetMapData.com](http://openstreetmap-data.com/data): OSM Land, Water, Coastline data5. [Open Data NYC](https://nycopendata.socrata.com/) Much of the data here is already georeferenced.6. [US National Weather Service](http://www.nws.noaa.gov/geodata/) (NOAA): 7. [U.S. Census](http://www.census.gov/2010census/data/)__Note / Tip:__  Any data with a spatial attribute, (such as street addresses, county names, state / province names, country names, zipcodes, IP addresses, etc.) but that doesn't have a geometry can be _georeferenced_ to geospatial data that does have a geometry. Typically the preferred format to work with this type of data is CSV (comma separated value) but CartoDB also allows for importing Microsoft Excel tables. _Make sure your data's first row are column names and that these names don't contain spaces, numbers or special characters._
+### Happy Mapping!
 
 
