@@ -165,13 +165,13 @@ If you are interested you can find another introductory tutorial about using Pos
 - Then in the SQL window run the following query ( this assumes your tornado data table is named `tornadoes`)
 
   ```
-  UPDATE us_countries 
-  	SET tornadoes_by_county = 
-  	(
-  		SELECT count(1) 
-  		FROM tornadoes 
-  		WHERE st_contains(us_counties.the_geom,tornados.the_geom) 
-  	)
+	UPDATE us_counties 
+	  SET tornadoes_by_county = 
+	  (
+	      SELECT count(1) 
+	      FROM tornadoes 
+	      WHERE st_contains(us_counties.the_geom,tornadoes.the_geom) 
+	  )
   ```
 - That's it folks!
 
