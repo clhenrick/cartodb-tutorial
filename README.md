@@ -59,14 +59,13 @@ For web mapping map tiles form our _basemap_ that we can overlay _custom data_ o
 
 ### Analyzing Geospatial data with PostGIS
 
-__PostGIS__ (along with PostgreSQL) is the open-source technology that allows for doing geospatial analysis in CartoDB. Why would we want to use this over other types of GIS software?
+__PostGIS__ (along with PostgreSQL) is the open-source technology that allows for performing geospatial analysis on data in CartoDB. Why would we want to use this over other types of GIS software?
 
-- Replicable - you can script your workflow, which is great for leaving a trail of your work.
-- It builds on SQL - if you already know SQL, this is an easy way to get into doing GIS analysis.
-- You can query data dynamically - if you have a server that can crunch a PostGIS query and return JSON, you can do dynamic spatial queries in your apps. e.g. "Find me all points near me."
+- *Replicable*: You can script your workflow, which is great for leaving a trail of your work.
+- *It builds on SQL*: If you already know SQL, this is an easy way to get into doing GIS analysis.
+- *You can query data dynamically*: If you have a server that can crunch a PostGIS query and return JSON, you can do dynamic spatial queries in your apps. e.g. "Find all points near me."
 
-If you are interested you can find another introductory tutorial about using PostGIS in CartoDB [here](https://github.com/csvsoundsystem/nicar-cartodb-postgis/blob/gh-pages/README.md#postgis). We will cover some basic PostGIS in this tutorial though.
-
+We will cover some basic PostGIS in this tutorial though ff you are interested you may find another introductory tutorial about using PostGIS in CartoDB [here](https://github.com/csvsoundsystem/nicar-cartodb-postgis/blob/gh-pages/README.md#postgis).
 
 
 ## The Tutorial
