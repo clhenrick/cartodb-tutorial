@@ -65,7 +65,7 @@ __PostGIS__ (along with PostgreSQL) is the open-source technology that allows fo
 - *It builds on SQL*: If you already know SQL, this is an easy way to get into doing GIS analysis.
 - *You can query data dynamically*: If you have a server that can crunch a PostGIS query and return JSON, you can do dynamic spatial queries in your apps. e.g. "Find all points near me."
 
-We will cover some basic PostGIS in this tutorial though ff you are interested you may find another introductory tutorial about using PostGIS in CartoDB [here](https://github.com/csvsoundsystem/nicar-cartodb-postgis/blob/gh-pages/README.md#postgis).
+We will cover some basic PostGIS in this tutorial though if you are interested you may find another introductory tutorial about using PostGIS in CartoDB [here](https://github.com/csvsoundsystem/nicar-cartodb-postgis/blob/gh-pages/README.md#postgis).
 
 
 ## The Tutorial
