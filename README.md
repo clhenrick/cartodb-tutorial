@@ -1,5 +1,5 @@
-CartoDB Dorkshop Tutorial
-==========
+CartoDB Tutorial
+================
 Parsons, The New School For Design  
 August 9, 2014
 
