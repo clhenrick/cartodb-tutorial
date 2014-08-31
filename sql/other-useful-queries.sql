@@ -1,10 +1,10 @@
 -------- Other Useful SQL Statements --------
 --- these were not used in the tutorial but feel free to try them out!
 
---- count the number of records in your table
+--- count the number of rows in your table
 SELECT count(*) FROM table_name
 
---- update the values in a column
+--- update the values for all rows in a column
 UPDATE table_name SET column_name = some_value
 
 --- add a new column. you must specify a data type such as INT for integer or TEXT for string
