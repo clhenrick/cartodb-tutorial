@@ -73,59 +73,66 @@ If you are interested you can find another introductory tutorial about using Pos
 
 ### Intro to the CartoDB Dashboard
 
-1. Create a free account and log into CartoDB. In the dashboard, select the `public data` option then `populated places` to add the dataset to your account. Take a look at the  `adm0cap field` in the __table view__ dashboard. This field stores 0's and 1's, with the latter being for country capitals.
+1. Create a free account and log into CartoDB. Once logged in and viewing the dashboard, click on the `common data` option, then click on `populated places`. This will add the `populated places` dataset to your account. Once the data has been imported take a look at the  `adm0cap field` in the __table view__. This field stores 0's and 1's, the latter meaning the place is a country capital.
 
 2. A walk through the GUI:
-    - When inspecting a data table there are two ways to view your data in CartoDB: 
-      - __Table View__: shows column names & rows, like a spreadsheet. For this dataset each row represents a point. But they may also represent other geometry types depending on your data.
-        - Take a look at what's inside the cells in `the_geom` column, You should see lattitude and longitude coordinates.
-      - __Map View__: Allows for inspecting our data visually, eg: zooming and panning. We can also change the base map, use the Visualization Wizard in the side bar to style data and add interaction such as pop-ups that display values from our table view. 
+    - When inspecting data in CartoDB there are two ways to view it: 
+      - __Table View__: Shows column names & rows much like a spreadsheet. For this dataset each row represents a point. But rows may also represent other geometry types depending on your data.
+        - Take a look at what's inside the cells in `the_geom` column, You should see `lattitude` and `longitude` coordinates.
+      - __Map View__: Allows for inspecting our data visually, eg: zooming and panning on an interactive web map. From here we can change the style of the base map, use the *Visualization Wizard* in the side bar to style our data and add interaction such as pop-ups that display values from the columns in our table view. 
       
-    - In the Visualization Wizard try switching the data's style to _category view_, choose the `adm0cap` column and assign different image markers to `adm0cap` for country-capital vs. regular populated place.
+    - In the Visualization Wizard try switching the data's style to _category view_, choose the `adm0cap` column and try assigning different types of image markers based on the value for `adm0cap`. Remember, a 1 means a place is a country capital.
     
-    - You may also upload custom images to be used as markers.
+    -__note:__ You may also upload custom images to be used as markers.
 
 3. Demonstrate Publishing / Sharing a Map: 
 
-    - By clicking on the `Visualize` button in the upper right corner we can create a `Visualization`. Do this and give your visualization a name such as "My First Viz". 
+    - By clicking on the `Visualize` button in the upper right corner we can create a *Visualization*. Do this and give your visualization a name such as "My First Viz". 
     
-    - When we create a visualization it will inherit the styles we set from our map view. 
+    - When we create a Visualization it will inherit the styles we set from our map view. 
     
     - Visualizations work by linking to your data tables. Note that if we go back to inspecting our imported data table and change the styles from here the visualization we made with that data _will not_ be updated with those styles. However if you make any changes to the values in those tables the corresponding visualization _will_ be affected.
     
     - __Note__: any changes we make to our visualization will be updated in real time to anyone viewing our viz!
     
-    - Notice the differnces between the __tables__ and __visualizations__ dashboards. The former is just the  data you have imported to your account, the latter are the maps you create with your data and may choose to share / publish. A single Visualization may link to multiple tables in the form of layers.
+    - Notice the differnces between the __tables__ and __visualizations__ views in your Dashboard. The former is just the  data you have imported to your account, the latter are the maps you create with your data and may choose to share / publish. A single Visualization may link to multiple tables in the form of *layers*.
 
 ### Making a Choropleth Map
 
 1. Delete the populated places dataset and visualization we made as we'll need the storage space to move forward with the next part of the tutorial using a free account. 
 
-2. Import the U.S. counties data from the following URL: `http://acdmy.org/d/counties.zip`  
-   __Tip:__ you can just copy and paste this link after clicking the "add data" button from the tables dashboard. No need to download it first!
+2. Import the `U.S. Counties` data from the following URL: `http://acdmy.org/d/counties.zip`  
+   __Tip:__ you can just copy and paste this URL after clicking the "add data" button from the tables dashboard. No need to download it first.
 
-3. Let's take a look at our data. Click on on of the cells under the `the_geom` column. You should see something like:  
+3. Let's take a look at this data. Click on one of the cells under the `the_geom` column. You should see something like:  
    
    ```
-{"type":"MultiPolygon","coordinates":[[[[-69.99693763,12.5775821],[-69.93639075,12.53172435],[-69.924672,12.51923249],[-69.91576087,12.49701569],[-69.88019772,12.45355866],[-69.87682044,12.42739492],[-69.8880916,12.41766999],[-69.90880286,12.41779206],[-69.93053138,12.42597077],[-69.94513913,12.44037507],[-69.924672,12.44037507],[-69.924672,12.447211],[-69.95856686,12.46320222],[-70.02765866,12.52293529],[-70.04808509,12.53115469],[-70.05809486,12.53717683],[-70.06240801,12.54682038],[-70.0603735,12.55695222],[-70.05109616,12.57404206],[-70.04873613,12.5837263],[-70.05264238,12.60000235],[-70.05964108,12.61424388],[-70.06110592,12.62539297],[-70.04873613,12.63214753],[-70.00715085,12.58551667],[-69.99693763,12.5775821]]]]}
+{"type":"MultiPolygon","coordinates":[[[[-69.99693763,12.5775821],[-69.93639075,12.53172435],
+[-69.924672,12.51923249],[-69.91576087,12.49701569],[-69.88019772,12.45355866],[-69.87682044,12.42739492],
+[-69.8880916,12.41766999],[-69.90880286,12.41779206],[-69.93053138,12.42597077],[-69.94513913,12.44037507],
+[-69.924672,12.44037507],[-69.924672,12.447211],[-69.95856686,12.46320222],[-70.02765866,12.52293529],
+[-70.04808509,12.53115469],[-70.05809486,12.53717683],[-70.06240801,12.54682038],[-70.0603735,12.55695222],
+[-70.05109616,12.57404206],[-70.04873613,12.5837263],[-70.05264238,12.60000235],[-70.05964108,12.61424388],
+[-70.06110592,12.62539297],[-70.04873613,12.63214753],[-70.00715085,12.58551667],[-69.99693763,12.5775821]]]]}
    ```
    
-   This is how CartoDB stores geometry for a polygon. Each of those coordinates refers to a node in that polygon.
+   This is how CartoDB stores geometry for a polygon. Each of those coordinates refers to a *node* in that polygon.
 
-4. Now switch to the __Map View__ to see how the polygons are overlayed on U.S.  
+4. Now switch to the __Map View__ to see how the polygons are overlayed on our map.  
    In the Visualization Wizard:
     - try changing the base map.
     - try changing the polygon fills and borders.
     
-5. Try clicking somewhere on the map. Notice a pop-up displays with the following message: *"You haven’t selected any fields to be shown in the infowindow."* Click on the **select fields** link and notice the sidebar on the right will navigate to the **Info Window** panel. This is where you may configure data to be shown in the pop-ups or what CartoDB calls *info windows.*  Here you may:
-    - turn columns on or off for data to be displayed in the pop-up / infowindow.
-    - edit the name to be displayed in the info window.
-    - change the style of info windows.
+5. Try clicking somewhere on the map. Notice a pop-up displays with the following message: *"You haven’t selected any fields to be shown in the infowindow."* Click on the `select fields` link and notice the sidebar on the right will navigate to the *Info Window* panel. This is where you may configure data to be shown in the pop-ups or what CartoDB calls *Info Windows.*  
+__Here you may:__
+    - turn any of your columns on or off for values to be displayed in the Info Window.
+    - edit the name of the column to be displayed in the Info Window (__note:__ this will not alter the column name in your actual data).
+    - change the style of Info Windows.
     - customize them with HTML and CSS.
     
-6. Let's try switching our map style in the Visualization Wizard. Switch the style from "simple" to "choropleth". Notice how our polygon data is automatically color coded to match a value in the table. However there's a problem here: mapping population by county gives a false impression to the viewer of our map. We need to *normalize the data* by dividing the number of people in a county by its geographic area.
+6. Let's try switching our data's graphic style using the Visualization Wizard. Switch the style from "simple" to "choropleth". Notice how our polygon data is automatically color coded to match a value in the table. However there's a problem here: mapping population by county gives a false impression to the viewer of our map. We need to *normalize* the data by dividing the number of people in a county by its geographic area.
 
-    - Our data already has this value included in the `pop_sqkm` column. To show how you could compute it on your own we would do the following in the SQL panel:
+    - Fortunately our data already has this value included in the `pop_sqkm` column. To show how you could compute it on your own we would do the following in the __*SQL Panel*__:
     
 	    ```
 	    SELECT pop_sqkm, 
@@ -136,35 +143,36 @@ If you are interested you can find another introductory tutorial about using Pos
 	    	FROM us_counties
 	    ```
 	    
-	 - This is an example of using the open-source technology **PostGIS** to *spatially analyze* our data. With PostGIS we can calculate things such as distance and area as well as export our data to different data formats such as GeoJSON or Shapefile. 
+	 - This is an example of using the open-source technology *PostGIS* to spatially analyze our data. With PostGIS we can calculate values such as distance and area, where different spatial datasets interesect each other, as well as export our data to different data formats such as *GeoJSON* or *Shapefile*. 
 
 ### Making a Thematic Point Map
 
 1. Import this tornado data: `http://acdmy.org/d/tornadoes.zip`.
 
-2. Inspect the data. Because this data is in CSV format it stores all of our *data types* as *strings* (a string is a data type for storing text). In order to use the *numeric* and *date* values in this data we need to convert the following columns' to their respective data types: 
-    - convert `damage` to  **number**.
-    - convert `date` to **date**.
+2. Inspect the data. Because this data is in CSV format all of our *data types* are stored as *strings* (a string is a data type for storing text, like a sentence or word). In order to use the *numeric* and *date* values in this data we need to convert the following columns' to their respective data types by clicking on the small carrot next to the column name, then clicking on *"Change data type..."*  
+__So now we:__
+    - convert the `damage` column's data type to *number*.
+    - convert the `date` column's data type to *date*.
         
-3. In the map view use the Visualization Wizard to show our data's `damage` value in different methods such as Bubble Map, intensity, density map, etc.
+3. In the map view use the Visualization Wizard to show our data's `damage` value in different methods such as Bubble Map, Intensity, Density Map, etc.
 
-4. (TO DO) Try adding labels to our map.
+4. *(TO DO)*: Try adding labels to our map.
 
-5. (TO DO) Demo the Filters panel, show how this gets translated to SQL. 
+5. *(TO DO)*: Demo the Filters panel, show how filters are translated into SQL by viewing the SQL Panel after applying a filter. 
 
 ### Animating Geospatial Data with Torque
 
 1. Use the same tornado data from above.
 
-2. Demo the Torque option in the Visualization Wizard.	
+2. Demo the Torque option in the Visualization Wizard by selecting the `date` column for the temporal value to animate.	
 
 ### Making a Multi-Layered Data Cake
 
-Let's combine both datasets from the last parts into a new visualization.
+Let's combine both the Counties and Tornadoes datasets into a new visualization.
 
-- We can use PostGIS to count the number of tornadoes per county. Create a new column called `tornadoes_by_county` in the us_counties table and give it a numeric data type. 
+- We can use PostGIS to count the number of tornadoes per county. Create a new column called `tornadoes_by_county` in the us_counties table and give it a *numeric* data type. 
 
-- Then in the SQL panel run the following query (this assumes your tornado data table is named `tornadoes`)
+- Then in the SQL Panel run the following query (this assumes your tornado data table is named `tornadoes`)
 
   ```
 	UPDATE us_counties 
@@ -177,7 +185,7 @@ Let's combine both datasets from the last parts into a new visualization.
   ```
 - In the visualization wizard for the us_counties layer try changing the category to choropleth and using the column `tornadoes_by_county` to style the map. 
 
-- That's it folks!
+- That's it folks, hope you had fun! See the **Resources** section below for further learning.
 
 ## Resources
 ### Learning
@@ -195,6 +203,10 @@ Let's combine both datasets from the last parts into a new visualization.
 
 
 ### Code Examples
+#### CartoDB SQL
+See the `sql` folder in this repositiory. Inside there are two files; the `demo-queries.sql` file contains the queries we used in this tutorial. The `other-useful-queries.sql` file contains examples of other basic SQL commands you can do with CartoDB's SQL Panel. Note that in most cases in CartoDB we don't need to include a semicolon at the end of our SQL query.
+
+#### CartoDB JS
 For using the CartoDB API. Requires a basic knowledge of Javascript for the web.
 
 - Andrew Hill's [blocks](http://bl.ocks.org/andrewxhill)
@@ -206,7 +218,9 @@ For using the CartoDB API. Requires a basic knowledge of Javascript for the web.
 - CartoDB team [maps 1](https://osm2.cartodb.com/page/1)
 - CartoDB team [maps 2](https://team.cartodb.com/)
 
-### Geospatial data sources1. [Natural Earth Data](http://www.naturalearthdata.com/): 3 levels of small-scale cultural and physical data, world coverage.2. [Metro Extracts](http://metro.teczno.com/): OpenStreetMap extracts of urban areas converted to shapefile and other formats.4. [OpenStreetMapData.com](http://openstreetmap-data.com/data): OSM Land, Water, Coastline data5. [Open Data NYC](https://nycopendata.socrata.com/) All sorts of goodies like 311 data. Much of the data here is already georeferenced but some is not*.6. [US National Weather Service](http://www.nws.noaa.gov/geodata/) (NOAA) 7. [U.S. Census](http://www.census.gov/2010census/data/): Demographic data for the U.S.__*Note / Tip:__  Any data with a spatial attribute, (such as street addresses, county names, state / province names, country names, zipcodes, IP addresses, etc.) but that doesn't have a geometry can be _georeferenced_ to geospatial data that does have a geometry. Typically the preferred format to work with this type of data is CSV (comma separated value) but CartoDB also allows for importing Microsoft Excel tables. _Make sure your data's first row are column names and that these names don't contain spaces, numbers or special characters._
+### Geospatial data sources
+A few places you may grab geospatial data from and use in CartoDB:  
+1. [Natural Earth Data](http://www.naturalearthdata.com/): 3 levels of small-scale cultural and physical data, world coverage.2. [Metro Extracts](http://metro.teczno.com/): OpenStreetMap extracts of urban areas converted to shapefile and other formats.4. [OpenStreetMapData.com](http://openstreetmap-data.com/data): OSM Land, Water, Coastline data5. [Open Data NYC](https://nycopendata.socrata.com/) All sorts of goodies like 311 data. Much of the data here is already georeferenced but some is not*.6. [US National Weather Service](http://www.nws.noaa.gov/geodata/) (NOAA) 7. [U.S. Census](http://www.census.gov/2010census/data/): Demographic data for the U.S.__*Note / Tip:__  Any dataset that has a spatial attribute, (such as street addresses, county names, state / province names, country names, zipcodes, IP addresses, etc.) but that doesn't have a geometry data type can be _georeferenced_ to geospatial data that does have a geometry. Typically the preferred format to work with this type of data is CSV (comma separated value) but CartoDB also allows for importing Microsoft Excel tables. _Make sure your data's first row are column names and that these names don't contain numbers or special characters as the first character of the column name._
 ## Happy Mapping!
 
 
