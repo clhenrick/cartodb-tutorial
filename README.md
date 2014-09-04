@@ -224,6 +224,4 @@ For using the CartoDB API. Requires a basic knowledge of Javascript for the web.
 ### Geospatial data sources
 A few places you may grab geospatial data from and use in CartoDB:  
 1. [Natural Earth Data](http://www.naturalearthdata.com/): 3 levels of small-scale cultural and physical data, world coverage.2. [Metro Extracts](http://metro.teczno.com/): OpenStreetMap extracts of urban areas converted to shapefile and other formats.4. [OpenStreetMapData.com](http://openstreetmap-data.com/data): OSM Land, Water, Coastline data5. [Open Data NYC](https://nycopendata.socrata.com/) All sorts of goodies like 311 data. Much of the data here is already georeferenced but some is not*.6. [US National Weather Service](http://www.nws.noaa.gov/geodata/) (NOAA) 7. [U.S. Census](http://www.census.gov/2010census/data/): Demographic data for the U.S.__*Note / Tip:__  Any dataset that has a spatial attribute, (such as street addresses, county names, state / province names, country names, zipcodes, IP addresses, etc.) but that doesn't have a geometry data type can be _georeferenced_ to geospatial data that does have a geometry. Typically the preferred format to work with this type of data is CSV (comma separated value) but CartoDB also allows for importing Microsoft Excel tables. _Make sure your data's first row are column names and that these names don't contain numbers or special characters as the first character of the column name._
-## Happy Mapping!
-
-
+*__Happy Mapping!__*
