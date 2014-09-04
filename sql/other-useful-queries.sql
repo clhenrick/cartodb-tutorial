@@ -21,13 +21,19 @@
 --- count the number of rows in your table
 SELECT count(*) FROM table_name
 
+--- look at data from only certain columns from your data:
+SELECT column_name1, column_name2 FROM table_name
+
 --- only show the data where data values of given column are not null:
 SELECT * FROM table_name WHERE column_name IS NOT NULL
+
+--- combine the above two:
+SELECT column_name1, column_name2 FROM table_name WHERE column_name IS NOT NULL
 
 --- update the values for all rows in a specified column
 UPDATE table_name SET column_name = some_value
 
---- add a new column. you must specify a data type such as INT for integer or TEXT for string
+--- add a new column. you must specify a data type such as INT for integer or TEXT for string or TIMESTAMP for a date time
 ALTER TABLE table_name ADD COLUMN new_column_name data_type
 
 --- convert a decimal field to a percent in a string field. Useful for creating a label in an info window.
