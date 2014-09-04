@@ -1,6 +1,7 @@
 -------- Other Useful SQL --------
 --- these were not used in the tutorial but feel free to try them out!
---- to use these sample queries in CartoDB:
+
+--- To use these sample queries in CartoDB:
     --- 1. open the SQL Panel in either the map or table view.
     --- 2. Delete the default "SELECT * FROM table_name" query.
     --- 3. Either type or copy and paste the query into the SQL panel.
@@ -8,12 +9,20 @@
         --- for example: change table_name to the name of your table and column_name to the name
         --- of the column you are using.
     --- 5. To run the query click the "Apply Query" button or press cmd + S (on a mac) or cntrl + S (on a PC)
---- note that in CartoDB we don't need to end our SQL statements with a semicolon.
---- there is also a back arrow in the SQL panel to view your previous queries, this comes in quite handy.
---- and by the way this is a comment in SQL. A comment is text or code that will be ignored by the software.
+
+--- NOTE: in CartoDB we don't need to end our SQL statements with a semicolon.
+
+--- There is also a back arrow in the SQL panel to view your previous queries, this comes in quite handy.
+
+--- AND by the way  double dashes (--) are used for specifiying a comment in PostgreSQL. 
+    --- (A comment is text or code that will be ignored by the software.)
+    --- I like to use --- for notes and -- to comment out actual code.
 
 --- count the number of rows in your table
 SELECT count(*) FROM table_name
+
+--- only show the data where data values of given column are not null:
+SELECT * FROM table_name WHERE column_name IS NOT NULL
 
 --- update the values for all rows in a specified column
 UPDATE table_name SET column_name = some_value
