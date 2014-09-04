@@ -9,9 +9,13 @@ I ([Chris Henrick](https://twitter.com/chrislhenrick)) have a professional backg
 
 ## What is this Dorkshop about?
 
-Mapping data interactively on the web using the free open-source software called CartoDB. 
+Mapping data interactively on the web using the free open-source software CartoDB. 
 
-### Examples / Use Cases:
+To view the slides for the presentation open [this link](http://clhenrick.github.io/cartodb-tutorial/slide-show/index.html) in a new tab or window in your browser and use the ◀ ▶ keys to navigate.
+
+## Examples / Use Cases:
+
+Here are some examples of how people have used CartoDB to create interactive maps:
 
 - [The Spatial Distribution of Swiss Soccer Fans](http://www.tagesanzeiger.ch/extern/interactive/2014/fankarte/)
 - [Where Would 9 million displaced Syrians fit?](http://projects.aljazeera.com/2013/syrias-refugees/index.html)
