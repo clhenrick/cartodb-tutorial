@@ -1,8 +1,9 @@
 -------- SQL used in the tutorial --------
---- to run these queries in CartoDB:
+--- to use these sample queries in CartoDB:
     --- 1. open the SQL Panel in either the map or table view.
-    --- 2. Delete the default "SELECT * FROM table_name" query
-    --- 3. Type or copy and paste in the query
+    --- 2. Delete the default "SELECT * FROM table_name" query.
+    --- 3. Either type or copy and paste the query into the SQL panel.
+    --- 4. To run the query click the "Apply Query" button or press cmd + S (on a mac) or cntrl + S (on a PC)
 --- note that in CartoDB we don't need to end our SQL statements with a semicolon.
 --- there is also a back arrow in the SQL panel to view your previous queries, this comes in quite handy.
 --- and by the way this is a comment in SQL. A comment is text or code that will be ignored by the software.
