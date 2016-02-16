@@ -1,54 +1,68 @@
-<!DOCTYPE html><html><head><title></title><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" /><style type='text/css'>
-body {
-  font-family: 'Helvetica';
-  letter-spacing:-5px;
-  background:#000;
-  background-size:100%;
-  color:#fff;
-  margin:0;
-  padding:0;
-  font-weight:bold;
-}
+<!DOCTYPE html>
+<html>
+<head>
+<title>Intro to CartoDB</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<style type='text/css'>
+  body {
+    font-family: 'Helvetica';
+    letter-spacing:-1px;
+    background:#000;
+    background-size:100%;
+    color:#fff;
+    margin:0;
+    padding:0;
+    font-weight:bold;
+  }
 
-h1, h2, h3, p {
-  margin:0;
-}
+  h1, h2, h3, p {
+    margin:0;
+  }
 
-em, a {
-  font-style:normal;
-  color:hsl(300, 100%, 50%);
-}
+  em, a {
+    font-style:normal;
+    color:hsl(300, 100%, 50%);
+  }
 
-a {
-  background: #34d0e7;
-  color:#000;
-  text-decoration:none;
-}
+  a {
+    /*background: #34d0e7;*/
+    color:#34d0e7;
+    text-decoration:none;
+  }
 
-div img {
-  width:100%;
-  -webkit-filter: grayscale(100%);
-}
+  li {
+    margin-bottom: 1%;
+  }
 
-div {
-  cursor:pointer;
-  cursor:hand;
-  position:absolute;
-  top:0px;
-  left:0px;
-  padding:75px;
-  line-height:97%;
-}
+  div img {
+    width:100%;
+  }
 
-div.center {
-  text-align:center;
-}
+  div {
+    cursor:pointer;
+    cursor:hand;
+    position:absolute;
+    top:0px;
+    left:0px;
+    padding:75px;
+    line-height:97%;
+  }
 
-div.imageText {
-  text-shadow:0px 0px 15px rgba(0,0,0,0.5);
-  -webkit-filter:opacity(0.9);
-}
-</style><script type='text/javascript'>
+  div.center {
+    text-align:center;
+  }
+
+  div.imageText {
+    text-shadow:0px 0px 15px rgba(0,0,0,0.7);
+    -webkit-filter:opacity(0.9);
+  }
+
+  span {
+    color: hsl(300, 50%, 50%);
+  }
+</style>
+<script type='text/javascript'>
 window.onload = function() {
     var s = document.getElementsByTagName('div'), cur = 0, ti;
     if (!s) return;
@@ -107,44 +121,58 @@ window.onload = function() {
 
     go(cur);
 };
-</script></head><body>
+</script>
+</head>
+<body>
 
 <div class="center">Creating maps on the web with <em>CartoDB</em></div>
-<div>by Chris Henrick <em>@clhenrick</em></div>
+<div>by <a target="_blank" href="https:github.com/clhenrick">Chris Henrick</a></div>
+<div>pssst! <br> use the <em>◀ </em> &amp; <em> ▶</em> arrow keys to navigate these slides</div>
 <div><img src="../img/Mount_Marcy_New_York_USGS_topo_map_1979.JPG">Why Maps?</div>
-<div>What's the big friggin' deal?</div>
-<div><img src="../img/google-maps.jpg">Maps + Web = Really Cool</div>
-<div><img src="../img/census-map-one-dot-per-person.jpg">Maps + Web + <em>Data</em> = Really Really Cool</div>
-<div>examples...</div>
-<div>what's going on here?</div>
-<div>the technology...</div>
-<div>data + tiles + server + API<br><br><img src="../img/tiles.gif"></div>
-<div>Data + location + geometry = geospatial data</div>
+<div>What's the big friggin' deal?<br><iframe width="560" height="315" src="https://www.youtube.com/embed/tj7RlQdF25A" frameborder="0" allowfullscreen></iframe></div>
+<div>Maps + Web = Really Cool</div>
+<div>Maps + Web + <em>Data</em> = Really Really Cool</div>
+<div><h3>Some examples...</h3></div>
+<div>
+  <ul>
+    <li><a target="_blank" href="http://www.landscapesofprofit.com/interactive">Landscapes of Profit</a></li>
+    <li><a target="_blank" href="clhenrick.io/work/greenpoint-williamsburg-toxicity-map.html">Greenpoint Williamsburg Toxicity Map</a></li>
+    <li><a target="_blank" href="http://projects.aljazeera.com/2013/syrias-refugees/index.html">Where Would 9 million displaced Syrians fit?</a></li>
+  </ul>
+</div>
+<div>What's going on behind the scenes here?</div>
+<div class="center"><em>3 Main Components</em></div>
+<div><em>Web Map API</em><br>eg: Leaflet, OpenLayers, Google Maps</div>
+<div><em>Map Tiles</em><br><br><img src="../img/tiles.gif"></div>
+<div><em>Geospatial Data: </em><br> attribute info + location info + a geometry type</div>
+<div><em>Types of Geospatial Data:</em></div>
 <div><img src="../img/nyc-pub-schools.png">Points</div>
 <div><img src="../img/us-roads-rivers.png">Lines</div>
 <div><img src="../img/nyc-boroughs.png">Polygons</div>
-<div>Weird Formats?</div>
-<div>Mostly Vector.</div>
+<div class="center"><em>Weird Formats</em></div>
+<div>Shapefile, GeoJSON, TopoJSON, KML, GPX, GeoTIFF</div>
+<div>Lots of <em>vectors</em></div>
 <div>You know, like illustrator.</div>
-<div><img src="../img/attribute-table.png">But with a backend <br><em>(data)</em></div>
-<div><img src="../img/ne10m-roads.png">+ front end <br><em>(visual)</em></div>
+<div><img src="../img/attribute-table.png">but with a backend <br><em>(attribute info)</em></div>
+<div><img src="../img/ne10m-roads.png">+ front end <br><em>(geometry)</em></div>
 <div>in one.</div>
 <div><img src="../img/cartodb-home.jpg">Why <em>CartoDB</em>?</div>
-<div>It takes care of all the nitty gritty server side stuff for you.</div>
-<div>Lets you easily overlay spatial data onto a map.</div>
+<div>It takes care of all the <em>nitty gritty server side setup work</em> for you.</div>
+<div>eg: hosting a <em>spatially enabled database</em> + rendering &amp; serving <em>map tiles</em></div>
 <div>Allows for the <em>rapid prototyping</em> of <em>cartographic visualizations</em>.</div>
 <div>Makes it easy to <em>publish</em> and <em>share</em> your maps!</div>
 <div>Allows for <em>analysis</em> with geospatial data.</div>
 <div>And you don't have to <em>install</em> anything (!!!)</div>
 <div><em>Disclaimer:</em> there are other options too...</div>
-<div>Leaflet, MapBox, TileMill, D3JS, etc...</div>
+<div>Leaflet, MapBox, TileMill, D3JS, Modest Maps, Tangram, etc...</div>
 <div>But <em>CartoDB</em> packages some of these together for you</div>
 <div>CartoDB's database: <br><a href="http://postgis.net/">PostGIS</a></div>
 <div>CartoDB's data styling: <br><a href="http://www.mapbox.com/carto/">CartoCSS</a></div>
 <div>CartoDB's tile renderer: <br> <a href="http://mapnik.org">Mapnik</a></div>
-<div>CartoDB's map viewing API: <br><a href="http://leafletjs.com">Leaflet</a></div>
+<div>CartoDB's front-end API: <br><a href="http://leafletjs.com">Leaflet</a></div>
 <div>But you don't really need to know all that...</div>
 <div>But if you'd like to, you should come to ...</div>
 <div class="center"><img src="../img/maptime-nyc.jpg"><em>MapTime!</em></div>
-<div>Let's make a <em>map!</em></div>
-</body></html>
+<div>Let's get started!</div>
+</body>
+</html>
